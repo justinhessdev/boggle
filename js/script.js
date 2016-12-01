@@ -18,6 +18,9 @@ var $clickedWord = $('#clickedWord');
 // represents the countdown timer contained in the word container
 var $countdownTimer = $('#countdownTimer');
 
+// global variable to keep track of intervak and stop timer at 0
+var $myInterval;
+
 // fill each tile a random letter from the alphabet
 function fillTileWithRandomLetter() {
   for(var i=0; i<$('.tile').length; i++){
@@ -45,7 +48,7 @@ function wordLogic() {
     $('#playerOneBoard').append('<div class="addedWordClass"><p class="addedWordP">' + $clickedWord.text() + '</p></div>')
   }
   $clickedWord.text("");
-  $('.tile').removeClass('selectedTile');
+  $('.selectedTile').slideUp("fast", repopulateLogic);
 }
 
 function startLogic() {
@@ -53,8 +56,30 @@ function startLogic() {
 }
 
 function showTimer() {
-  $('#countdownTimer').slideDown("fast");
+  $('#countdownTimer').slideDown("fast", startInterval);
 }
+
+function repopulateLogic() {
+  var $selectedTiles = $('.selectedTile');
+  $selectedTiles.slideDown("fast");
+  $selectedTiles.removeClass("selectedTile");
+}
+
+function startInterval() {
+  $myInterval = setInterval(startTimer, 1000);
+}
+
+function startTimer() {
+  var $countdownTimer = $('#countdownTimer');
+  $countdownTimer.text($countdownTimer.text()-1);
+
+  if($countdownTimer.text() === "0"){
+    clearInterval($myInterval);
+    currentPlayerIndex = 1;
+  }
+
+}
+
 /*
  * IMPLEMENTING FUNCTIONS
  */
