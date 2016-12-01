@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Word Game</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"
+integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  </head>
+  <body>
+    <button id="newGame">New Game</button>
+    <h1>Player 1 goes first</h1>
+
+    <div id="gameContainer">
+
+      <div id="tileContainer">
+        <div id="tile0" class="tile"></div>
+        <div id="tile1" class="tile"></div>
+        <div id="tile2" class="tile"></div>
+        <div id="tile3" class="tile"></div>
+        <div id="tile4" class="tile"></div>
+        <div id="tile5" class="tile"></div>
+        <div id="tile6" class="tile"></div>
+        <div id="tile7" class="tile"></div>
+        <div id="tile8" class="tile"></div>
+      </div>
+
+      <div id="submitContainer">
+        <div id="wordContainer">
+            <p id="clickedWord"></p>
+        </div>
+        <button id="enterButton">Enter</button>
+      </div>
+
+      <div id="playerBoard">
+        <div id="playerOneBoard">
+          <h1>Player 1</h1>
+          <h2>Score: 0</h2>
+        </div>
+        <div id="playerTwoBoard">
+          <h1>Player 2</h1>
+          <h2>Score: 0</h2>
+        </div>
+      </div>
+
+    </div>
+    
+    <script src="./js/script.js" charset="utf-8"></script>
+  </body>
+</html>
