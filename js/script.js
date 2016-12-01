@@ -1,39 +1,66 @@
-var currentPlayerIndex = 0;
-var player=[{symbol: '1', color: 'yellow'},
-            {symbol: '2', color: 'tomato'}];
+// represent a player
+var player=[{symbol: '1'},
+            {symbol: '2'}];
 
-var $tile = $('.tile');
-var isGameStarted=false;
+// represents which player has turn
+var currentPlayerIndex = 0;
+
+// represents our 9 tiles
+var $tiles = $('.tiles');
+
+// array containing each letter of alphabet
 var letterArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-
-$('#newGame').on('click', newGame);
-$('#newGame').hide();
+// represents the area where clicked letters appear on board
 var $clickedWord = $('#clickedWord');
 
-newGame();
+// represents the countdown timer contained in the word container
+var $countdownTimer = $('#countdownTimer');
 
-// returns a random letter in alphabet
+// fill each tile a random letter from the alphabet
 function fillTileWithRandomLetter() {
-  return letterArr[Math.floor(Math.random()*letterArr.length)];
+  for(var i=0; i<$('.tile').length; i++){
+      $('.tile')[i].innerHTML = letterArr[Math.floor(Math.random()*letterArr.length)];
+  }
 }
-
-$('.tile').on('click', tileLogic);
 
 // on click add letter to word div
 // make tile change color to symbolize clicked
 function tileLogic() {
-  $(this).toggleClass('selectedTile');
-  $clickedWord.text($clickedWord.text() + $(this).text());
+  if($(this).hasClass('selectedTile')){
+    var currentWord = $clickedWord.text();
+    var newWord = currentWord.replace($(this).text(), '');
+    $clickedWord.text(newWord);
+  } else {
+    $clickedWord.text($clickedWord.text() + $(this).text());
+  }
+
+    $(this).toggleClass('selectedTile');
+
 }
 
-function newGame() {
-
-    for(var i=0; i<$('.tile').length; i++){
-        $('.tile')[i].innerHTML = fillTileWithRandomLetter();
-    }
-
-    $('h1').show();
-    currentPlayerIndex=0;
+function wordLogic() {
+  if (!($clickedWord.text() === "")){
+    $('#playerOneBoard').append('<div class="addedWordClass"><p class="addedWordP">' + $clickedWord.text() + '</p></div>')
+  }
+  $clickedWord.text("");
+  $('.tile').removeClass('selectedTile');
 }
+
+function startLogic() {
+  $('#navBar').slideUp("fast", showTimer);
+}
+
+function showTimer() {
+  $('#countdownTimer').slideDown("fast");
+}
+/*
+ * IMPLEMENTING FUNCTIONS
+ */
+
+$('#countdownTimer').hide();
+$('.tile').on('click', tileLogic);
+$('#enterButton').on('click', wordLogic);
+$('#startButton').on('click', startLogic);
+fillTileWithRandomLetter();

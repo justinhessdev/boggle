@@ -10,11 +10,13 @@ crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="./css/style.css">
   </head>
   <body>
-    <button id="newGame">New Game</button>
-    <h1>Player 1 goes first</h1>
+    <div id="navBar">
+      <h1>Player 1</h1>
+      <h2 id="time">30</h2>
+      <button id="startButton">Start</button>
+    </div>
 
     <div id="gameContainer">
-
       <div id="tileContainer">
         <div id="tile0" class="tile"></div>
         <div id="tile1" class="tile"></div>
@@ -30,23 +32,27 @@ crossorigin="anonymous"></script>
       <div id="submitContainer">
         <div id="wordContainer">
             <p id="clickedWord"></p>
+            <p id="countdownTimer">30</p>
         </div>
         <button id="enterButton">Enter</button>
       </div>
 
       <div id="playerBoard">
         <div id="playerOneBoard">
-          <h1>Player 1</h1>
-          <h2>Score: 0</h2>
+          <div id="playerOneScore">
+            <p>Player 1</p>
+            <p>Score: 0</p>
+          </div>
         </div>
         <div id="playerTwoBoard">
-          <h1>Player 2</h1>
-          <h2>Score: 0</h2>
+          <div id="playerTwoScore">
+            <p>Player 2</p>
+            <p>Score: 0</p>
+          </div>
         </div>
       </div>
-
     </div>
-    
+
     <script src="./js/script.js" charset="utf-8"></script>
   </body>
 </html>
