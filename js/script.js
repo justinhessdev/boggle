@@ -63,6 +63,12 @@ function tileLogic() {
 }
 
 function wordLogic() {
+
+  if ($countdownTimer.text() === "0"){
+    console.log("Time is uppp");
+    return;
+  }
+
   var $selectedTiles = $('.selectedTile');
   if (words.indexOf($clickedWord.text()) >= 0){
     playerScoreTracker[currentPlayerIndex].score = parseInt(playerScoreTracker[currentPlayerIndex].score) + $clickedWord.text().length;
@@ -124,7 +130,7 @@ function reset() {
   var currentPlayer = $('#currentPlayer');
   currentPlayer.text("Player " + (currentPlayerIndex+1));
   $countdownTimer.hide();
-  $countdownTimer.text("20");
+  $countdownTimer.text("10");
   $('.addedWordClass').hide();
   $hiddenImageArr[0].show();
   $tiles.off();
@@ -141,8 +147,13 @@ function gameOverLogic() {
   var currentPlayer = $('#currentPlayer');
   currentPlayer.text("Game Over");
   var gameIndex = indexOfMaxTwoPlayers(playerScoreTracker);
-  $('#gameRules').text(playerScoreTracker[gameIndex[0]].player + " wins the game");
-  $('#funnyMessage').text(playerScoreTracker[gameIndex[1]].player + " was stupid");
+  if (gameIndex === -1){
+    $('#gameRules').text(playerScoreTracker[0].player + " and " + playerScoreTracker[1].player + " tied");
+    $('#funnyMessage').text("You are both stupid");
+  } else {
+      $('#gameRules').text(playerScoreTracker[gameIndex[0]].player + " wins the game");
+      $('#funnyMessage').text(playerScoreTracker[gameIndex[1]].player + " was stupid");
+  }
   $countdownTimer.hide();
   $('.addedWordClass').show();
   $hiddenImageArr[0].hide();
@@ -158,8 +169,14 @@ function gameOverLogic() {
 function newGameLogic() {
   playerScoreTracker[0].score = "0";
   playerScoreTracker[1].score = "0";
-  $countdownTimer.text("20");
+  $countdownTimer.text("10");
   currentPlayerIndex=0;
+  $newGame.hide();
+  $startGame.show();
+  $('#gameRules').text("You have 30 seconds to make as many words as you can");
+  $('#funnyMessage').text("Don't be stupid");
+  $('#playerOneScoreBoard').text("Score: 0");
+  $('#playerTwoScoreBoard').text("Score: 0");
   $('.addedWordClass').remove();
   startLogic();
 }
@@ -183,7 +200,7 @@ function indexOfMax(arr) {
 }
 
 function indexOfMaxTwoPlayers(arr) {
-    if (arr.length === 0) {
+    if (arr[0].score === arr[1].score) {
         return -1;
     }
 

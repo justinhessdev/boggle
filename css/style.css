@@ -54,6 +54,11 @@ img {
   height: 40px;
 }
 
+#newGameButton {
+  width: 80px;
+  height: 40px;
+}
+
 #tileContainer {
     background-color: lightblue;
     width: 307px;
