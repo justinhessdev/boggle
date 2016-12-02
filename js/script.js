@@ -178,6 +178,7 @@ function newGameLogic() {
   $('#playerOneScoreBoard').text("Score: 0");
   $('#playerTwoScoreBoard').text("Score: 0");
   $('.addedWordClass').remove();
+  fillTileWithRandomLetter();
   startLogic();
 }
 // returns index of largest number -- in our case the index of the player with the highest score
@@ -225,4 +226,4 @@ $countdownTimer.hide();
 $('#enterButton').on('click', wordLogic);
 $newGame.on('click', newGameLogic);
 $startGame.on('click', startLogic);
-fillTileWithRandomLetter()
+fillTileWithRandomLetter();
