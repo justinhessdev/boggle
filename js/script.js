@@ -124,7 +124,7 @@ function reset() {
   var currentPlayer = $('#currentPlayer');
   currentPlayer.text("Player " + (currentPlayerIndex+1));
   $countdownTimer.hide();
-  $countdownTimer.text("5");
+  $countdownTimer.text("20");
   $('.addedWordClass').hide();
   $hiddenImageArr[0].show();
   $tiles.off();
@@ -155,6 +155,14 @@ function gameOverLogic() {
   $newGame.show();
 }
 
+function newGameLogic() {
+  playerScoreTracker[0].score = "0";
+  playerScoreTracker[1].score = "0";
+  $countdownTimer.text("20");
+  currentPlayerIndex=0;
+  $('.addedWordClass').remove();
+  startLogic();
+}
 // returns index of largest number -- in our case the index of the player with the highest score
 function indexOfMax(arr) {
     if (arr.length === 0) {
@@ -198,5 +206,6 @@ function indexOfMaxTwoPlayers(arr) {
 $newGame.hide();
 $countdownTimer.hide();
 $('#enterButton').on('click', wordLogic);
+$newGame.on('click', newGameLogic);
 $startGame.on('click', startLogic);
 fillTileWithRandomLetter()
