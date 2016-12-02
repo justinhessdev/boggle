@@ -1,4 +1,4 @@
-"A",
+var words = ["A",
 "a",
 "aa",
 "aal",
@@ -235883,4 +235883,4 @@
 "Zythia",
 "zythum",
 "Zyzomys",
-"Zyzzogeton",
+"Zyzzogeton"]

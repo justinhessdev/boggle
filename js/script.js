@@ -1,6 +1,6 @@
 // represent a player
-var player=[{symbol: '1'},
-            {symbol: '2'}];
+var player=[{symbol: '1', score: '0'},
+            {symbol: '2', score: '0'}];
 
 // represents which player has turn
 var currentPlayerIndex = 0;
@@ -18,8 +18,11 @@ var $clickedWord = $('#clickedWord');
 // represents the countdown timer contained in the word container
 var $countdownTimer = $('#countdownTimer');
 
-// global variable to keep track of intervak and stop timer at 0
+// global variable to keep track of interval and stop timer at 0
 var $myInterval;
+
+// keeps track of red tiles and stops interval when completeß
+var $redInterval;
 
 // fill each tile a random letter from the alphabet
 function fillTileWithRandomLetter() {
@@ -44,11 +47,23 @@ function tileLogic() {
 }
 
 function wordLogic() {
-  if (!($clickedWord.text() === "")){
-    $('#playerOneBoard').append('<div class="addedWordClass"><p class="addedWordP">' + $clickedWord.text() + '</p></div>')
+  if (words.indexOf($clickedWord.text()) >= 0){
+    $('#playerOneBoard').append('<div class="addedWordClass"><p class="addedWordP">' + $clickedWord.text() + '</p></div>');
+    $clickedWord.text("");
+    $('.selectedTile').slideUp("fast", repopulateLogic);
+  } else {
+    $clickedWord.text("");
+    $('.selectedTile').addClass("redTile");
+    $redInterval = setInterval(removeRed, 1000);
+    
   }
-  $clickedWord.text("");
-  $('.selectedTile').slideUp("fast", repopulateLogic);
+}
+
+function removeRed() {
+  var $selectedTiles = $('.selectedTile');
+  $selectedTiles.removeClass("redTile");
+  $selectedTiles.removeClass("selectedTile");
+  clearInterval($redInterval);
 }
 
 function startLogic() {
