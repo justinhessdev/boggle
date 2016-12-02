@@ -13,9 +13,10 @@ crossorigin="anonymous"></script>
   <body>
     <div id="navBar">
       <h1 id="currentPlayer">Player 1</h1>
-      <h2>You have 30 seconds to make as many words as you can</h2>
-      <h2>Don't be stupid</h2>
+      <h3 id="gameRules">You have 30 seconds to make as many words as you can</h3>
+      <h5 id="funnyMessage">Don't be stupid</h5>
       <button id="startButton">Start</button>
+      <button id="newGameButton">New Game</button>
     </div>
 
     <div id="gameContainer">
@@ -45,11 +46,17 @@ crossorigin="anonymous"></script>
             <p>Player 1</p>
             <p>Score: 0</p>
           </div>
+          <div id="hiddenImageOne">
+            <img src="lock.png" alt="">
+          </div>
         </div>
         <div id="playerTwoBoard">
           <div id="playerTwoScore">
             <p>Player 2</p>
             <p>Score: 0</p>
+          </div>
+          <div id="hiddenImageTwo">
+              <img src="lock.png" alt="">
           </div>
         </div>
       </div>

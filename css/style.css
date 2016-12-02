@@ -2,17 +2,25 @@ body {
   background-color: #33C7FF;
 }
 
+img {
+  width: 50px;
+  height: 50px;
+  vertical-align: top;
+  display: inline-block;
+  margin-left: 70px;
+  margin-top: 30px;
+}
+
 #navBar {
   background-color: #3380FF;
-  width: 700px;
-  height: 225px;
+  width: 300px;
+  height: 276px;
   position: absolute;
-  padding: 40px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-right: 20px;
   margin-left: 400px;
+  margin-top: 20px;
+  padding: 15px;
   border: 5px solid lightblue;
+  text-align: center;
 
 }
 
@@ -35,6 +43,10 @@ body {
 
 .redTile {
   background-color: red;
+}
+
+.greenTile {
+  background-color: lime;
 }
 
 #startButton {
@@ -100,14 +112,21 @@ body {
 
 #playerOneBoard {
   width: 49%;
-  height: 270px;
+  height: 100%;
   display: inline-block;
   background-color: #336EFF;
 }
 
 #playerOneScore {
+  width: 92%;
   background-color: #338DFF;
   vertical-align: top;
+  padding-left: 5px;
+  padding-top: 1px;
+  padding-bottom: 5px;
+  height: 70px;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
 #playerOneWords{
@@ -118,14 +137,22 @@ body {
 
 #playerTwoBoard {
   width: 49%;
-  height: 270px;
+  height: 100%;
   display: inline-block;
   background-color: #336EFF;
+  vertical-align: top;
 }
 
 #playerTwoScore {
   background-color: #338DFF;
   vertical-align: top;
+  width: 92%;
+  height: 70px;
+  margin-left: 5px;
+  margin-top: 5px;
+  padding-left: 5px;
+  padding-top: 1px;
+  padding-bottom: 5px;
 }
 
 #playerTwoWords {
