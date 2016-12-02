@@ -1,6 +1,5 @@
 // represent a player
-var player=[{symbol: '1', score: '0'},
-            {symbol: '2', score: '0'}];
+var playerBoardArray=[$('#playerOneBoard'), $('#playerTwoBoard')];
 
 // represents which player has turn
 var currentPlayerIndex = 0;
@@ -14,9 +13,6 @@ var letterArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm'
 
 // represents the area where clicked letters appear on board
 var $clickedWord = $('#clickedWord');
-
-// represents the countdown timer contained in the word container
-var $countdownTimer = $('#countdownTimer');
 
 // global variable to keep track of interval and stop timer at 0
 var $myInterval;
@@ -48,14 +44,13 @@ function tileLogic() {
 
 function wordLogic() {
   if (words.indexOf($clickedWord.text()) >= 0){
-    $('#playerOneBoard').append('<div class="addedWordClass"><p class="addedWordP">' + $clickedWord.text() + '</p></div>');
+    playerBoardArray[currentPlayerIndex].append('<div class="addedWordClass"><p class="addedWordP">' + $clickedWord.text() + '</p></div>');
     $clickedWord.text("");
     $('.selectedTile').slideUp("fast", repopulateLogic);
   } else {
     $clickedWord.text("");
     $('.selectedTile').addClass("redTile");
     $redInterval = setInterval(removeRed, 1000);
-    
   }
 }
 
@@ -91,8 +86,18 @@ function startTimer() {
   if($countdownTimer.text() === "0"){
     clearInterval($myInterval);
     currentPlayerIndex = 1;
+    $('#navBar').slideDown("fast", reset);
   }
 
+}
+
+function reset() {
+  var currentPlayer = $('#currentPlayer');
+  currentPlayer.text("Player " + (currentPlayerIndex+1));
+  var $countdownTimer = $('#countdownTimer');
+  $countdownTimer.hide();
+  $countdownTimer.text("5");
+  $('.addedWordClass').hide();
 }
 
 /*
