@@ -1,5 +1,6 @@
 body {
   background-color: #33C7FF;
+  padding: 5px;
 }
 
 img {
@@ -13,28 +14,27 @@ img {
 
 #navBar {
   background-color: #3380FF;
-  width: 300px;
+  width: 26%;
   height: 276px;
   position: absolute;
-  margin-left: 400px;
-  margin-top: 20px;
+  margin-left: 32%;
+  margin-top: 24px;
   padding: 15px;
-  border: 5px solid lightblue;
   text-align: center;
-
+  border: 1px solid white;
 }
 
 .tile {
     border: 1px solid black;
-    width: 97px;
-    height: 67px;
-    vertical-align: top;
+    width: 32%;
+    height: 70px;
     text-align: center;
-    display: inline-block;
     background-color: white;
-    margin-bottom: 3px;
     padding-top: 30px;
     font-size: 0px;
+    float: left;
+    vertical-align: top;
+    display: inline-block;
 }
 
 .selectedTile {
@@ -60,21 +60,24 @@ img {
 }
 
 #tileContainer {
-    background-color: lightblue;
-    width: 307px;
-    margin: 20px;
-    padding: 5px;
+    width: 30%;
     display: inline-block;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
 
 #wordContainer {
-  width: 300px;
+  width: 99%;
   height: 130px;
   border: 3px black solid;
 }
 
 #clickedWord{
-  width: 160px;
+  width: 65%;
   height: 60px;
   display: inline-block;
   text-align: center;
@@ -84,34 +87,35 @@ img {
 }
 
 #countdownTimer {
-  width: 60px;
+  width: 25%;
   height: 60px;
   display: inline-block;
   font-size: 20px;
   border-left: 3px solid black;
   text-align: center;
-  margin-left: 35px;
   padding-left: 10px;
-  vertical-align: top;
   padding-top: 30px;
-}
-
-#submitContainer {
-  width: 307px;
-  height: 305px;
   vertical-align: top;
-  margin: 20px;
-  display: inline-block;
-  background-color: lightblue;
-  padding: 5px;
 }
 
 #enterButton {
   width: 200px;
   height: 100px;
-  margin-top: 50px;
-  margin-left: 50px;
+  margin-top: 35px;
+}
 
+#submitContainer {
+  width: 27%;
+  height: 315px;
+  vertical-align: top;
+  display: inline-block;
+  padding-right: 7px;
+  padding-left: 5px;
+  padding-top: 5px;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 13px;
+  margin-bottom: 20px;
 }
 
 #playerOneBoard {
@@ -119,10 +123,11 @@ img {
   height: 100%;
   display: inline-block;
   background-color: #336EFF;
+  border: 1px solid black;
 }
 
 #playerOneScoreSection {
-  width: 92%;
+  width: 93%;
   background-color: #338DFF;
   vertical-align: top;
   padding-left: 5px;
@@ -133,10 +138,16 @@ img {
   margin-left: 5px;
 }
 
-#playerOneWords{
-  background-color: #33E6FF;
-  height: 100px;
-  margin: 10px;
+#playerTwoScoreSection {
+  background-color: #338DFF;
+  vertical-align: top;
+  width: 93%;
+  height: 70px;
+  margin-left: 5px;
+  margin-top: 5px;
+  padding-left: 5px;
+  padding-top: 1px;
+  padding-bottom: 5px;
 }
 
 #playerTwoBoard {
@@ -145,59 +156,50 @@ img {
   display: inline-block;
   background-color: #336EFF;
   vertical-align: top;
+  border: 1px solid black;
 }
 
-#playerTwoScoreSection {
-  background-color: #338DFF;
-  vertical-align: top;
-  width: 92%;
-  height: 70px;
-  margin-left: 5px;
-  margin-top: 5px;
-  padding-left: 5px;
-  padding-top: 1px;
-  padding-bottom: 5px;
-}
-
-#playerTwoWords {
-  background-color: #33E6FF;
-  height: 100px;
-  margin: 10px;
-}
-
-.addedWordClass {
+.addWord{
   background-color: white;
-  width: 140px;
-  margin-left: 10px;
-  margin-top: 5px;
-  vertical-align: top;
+  padding-left: 15px;
+  width: 88%;
+  margin: 0px;
+  margin-left: 5px;
+  margin-bottom: 3px;
   display: inline-block;
   float: left;
+  vertical-align: top;
+  font-size: 20px;
 }
 
-.addedWordP {
-  color: green;
-  font-weight: bold;
-  position: relative;
-  left: 50%;
+#playerOneAddedWord {
+  margin-top: 15px;
+  width: 99%;
+  height: 68%;
+  overflow: scroll;
+}
+
+#playerTwoAddedWord {
+  margin-top: 15px;
+  width: 99%;
+  height: 68%;
+  overflow: scroll;
 }
 
 #playerBoard {
-  width: 405px;
+  width: 35%;
   height: 306px;
-  background-color: lightblue;
-  vertical-align: top;
   display: inline-block;
+  vertical-align: top;
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 13px;
   padding-left: 4px;
   padding-top: 4px;
   padding-bottom: 4px;
-  border: 1px solid lightblue;
+  margin-bottom: 20px;
 }
 
 #gameContainer {
-  width: 1200px;
+  width: 100%;
   background-color: #33A2FF;
-  margin: 20px;
 }

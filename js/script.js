@@ -1,10 +1,6 @@
 // array that contains references to each player's board
-var $playerBoardArray=[$('#playerOneBoard'), $('#playerTwoBoard')];
-
-// array that contains references to each player's score 
-var $playerScoreArray=[$('#playerOneScoreBoard'), $('#playerTwoScoreBoard')];
-
-var playerScoreTracker = [{player: "Player 1", score: "0"}, {player: "Player 2", score: "0"}];
+var $player=[{player: "Player 1", score: "0", board: $('#playerOneBoard'), scoreBoard: $('#playerOneScoreBoard'), word:$('#playerOneAddedWord')}, 
+             {player: "Player 2", score: "0", board: $('#playerTwoBoard'), scoreBoard: $('#playerTwoScoreBoard'), word:$('#playerTwoAddedWord')}];
 
 // represents which player has turn
 var currentPlayerIndex = 0;
@@ -14,7 +10,7 @@ var $tiles = $('.tiles');
 
 // array containing each letter of alphabet
 var letterArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-'s', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+'s', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'a', 'e', 'e', 'i', 'o', 'u']
 
 // represents the area where clicked letters appear on board
 var $clickedWord = $('#clickedWord');
@@ -77,10 +73,10 @@ function wordLogic() {
 
   var $selectedTiles = $('.selectedTile');
   if (words.indexOf($clickedWord.text()) >= 0){
-    playerScoreTracker[currentPlayerIndex].score = parseInt(playerScoreTracker[currentPlayerIndex].score) + $clickedWord.text().length;
-    $playerScoreArray[currentPlayerIndex].text("Score: " + parseInt(playerScoreTracker[currentPlayerIndex].score));
+    $player[currentPlayerIndex].score = parseInt($player[currentPlayerIndex].score) + $clickedWord.text().length;
+    $player[currentPlayerIndex].scoreBoard.text("Score: " + parseInt($player[currentPlayerIndex].score));
     // represents clicked tiles
-    $playerBoardArray[currentPlayerIndex].append('<div class="addedWordClass"><p class="addedWordP">' + $clickedWord.text() + '</p></div>');
+    $player[currentPlayerIndex].word.append('<p class="addWord">' + $clickedWord.text() + '</p>');
     $clickedWord.text("");
     $selectedTiles.addClass("greenTile");
     $greenInterval = setInterval(removeGreen, 100);
@@ -140,7 +136,7 @@ function reset() {
   $tiles.css("fontSize", 0);
   $('#gameContainer').hide();
   $countdownTimer.text("10");
-  $('.addedWordClass').hide();
+  $('#playerOneAddedWord').hide();
   $hiddenImageArr[0].show();
   $tiles.off();
   $tiles.removeClass("selectedTile");
@@ -156,16 +152,16 @@ function reset() {
 function gameOverLogic() {
   var currentPlayer = $('#currentPlayer');
   currentPlayer.text("Game Over");
-  var gameIndex = indexOfMaxTwoPlayers(playerScoreTracker);
+  var gameIndex = indexOfMaxTwoPlayers($player);
   if (gameIndex === -1){
-    $('#gameRules').text(playerScoreTracker[0].player + " and " + playerScoreTracker[1].player + " tied");
+    $('#gameRules').text($player[0].player + " and " + $player[1].player + " tied");
     $('#funnyMessage').text("You are both stupid");
   } else {
-      $('#gameRules').text(playerScoreTracker[gameIndex[0]].player + " wins the game");
-      $('#funnyMessage').text(playerScoreTracker[gameIndex[1]].player + " was stupid");
+      $('#gameRules').text($player[gameIndex[0]].player + " wins the game");
+      $('#funnyMessage').text($player[gameIndex[1]].player + " was stupid");
   }
   $countdownTimer.hide();
-  $('.addedWordClass').show();
+  $('#playerOneAddedWord').show();
   $hiddenImageArr[0].hide();
   $tiles.off();
   $tiles.removeClass("selectedTile");
@@ -177,8 +173,8 @@ function gameOverLogic() {
 }
 
 function newGameLogic() {
-  playerScoreTracker[0].score = "0";
-  playerScoreTracker[1].score = "0";
+  $player[0].score = "0";
+  $player[1].score = "0";
   $countdownTimer.text("10");
   currentPlayerIndex=0;
   $newGame.hide();
@@ -187,7 +183,7 @@ function newGameLogic() {
   $('#funnyMessage').text("Don't be stupid");
   $('#playerOneScoreBoard').text("Score: 0");
   $('#playerTwoScoreBoard').text("Score: 0");
-  $('.addedWordClass').remove();
+  $('.addWord').remove();
   $hiddenImageArr[1].show();
   startLogic();
 }
