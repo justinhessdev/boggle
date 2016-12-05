@@ -31,6 +31,9 @@ var $redInterval;
 // keeps track of green tiles and stops interval when complete
 var $greenInterval;
 
+// keerps track of interval for size of tiles
+var $textSizeInterval;
+
 // represents the countdown timer
 var $countdownTimer = $('#countdownTimer');
 
@@ -43,9 +46,12 @@ var $startGame = $('#startButton');
 
 // fill each tile a random letter from the alphabet
 function fillTileWithRandomLetter() {
-  for(var i=0; i<$tiles.length; i++){
+  if (currentPlayerIndex == 0) {
+    for(var i=0; i<$tiles.length; i++){
       $tiles[i].innerHTML = letterArr[Math.floor(Math.random()*letterArr.length)];
+    }
   }
+  $textSizeInterval = setInterval(tileEffect, 10);
 }
 
 // on click add letter to word div
@@ -77,11 +83,11 @@ function wordLogic() {
     $playerBoardArray[currentPlayerIndex].append('<div class="addedWordClass"><p class="addedWordP">' + $clickedWord.text() + '</p></div>');
     $clickedWord.text("");
     $selectedTiles.addClass("greenTile");
-    $greenInterval = setInterval(removeGreen, 500);
+    $greenInterval = setInterval(removeGreen, 100);
   } else {
     $clickedWord.text("");
     $selectedTiles.addClass("redTile");
-    $redInterval = setInterval(removeRed, 500);
+    $redInterval = setInterval(removeRed, 100);
   }
 }
 
@@ -102,6 +108,7 @@ function removeGreen() {
 function startLogic() {
   $tiles.on('click', tileLogic);
   $('#navBar').slideUp("fast", showTimer);
+  $('#gameContainer').show(200, fillTileWithRandomLetter);
   $hiddenImageArr[currentPlayerIndex].hide();
 }
 
@@ -130,6 +137,8 @@ function reset() {
   var currentPlayer = $('#currentPlayer');
   currentPlayer.text("Player " + (currentPlayerIndex+1));
   $countdownTimer.hide();
+  $tiles.css("fontSize", 0);
+  $('#gameContainer').hide();
   $countdownTimer.text("10");
   $('.addedWordClass').hide();
   $hiddenImageArr[0].show();
@@ -138,6 +147,7 @@ function reset() {
   $tiles.removeClass("redTile");
   $tiles.removeClass("greenTile");
   $clickedWord.text("");
+  // $textSizeInterval = setInterval(tileEffect, 20);
 }
 
 /*
@@ -178,7 +188,7 @@ function newGameLogic() {
   $('#playerOneScoreBoard').text("Score: 0");
   $('#playerTwoScoreBoard').text("Score: 0");
   $('.addedWordClass').remove();
-  fillTileWithRandomLetter();
+  $hiddenImageArr[1].show();
   startLogic();
 }
 // returns index of largest number -- in our case the index of the player with the highest score
@@ -217,13 +227,25 @@ function indexOfMaxTwoPlayers(arr) {
     return [maxIndex, lowIndex];
 }
 
+var sizeCounter = 1;
+function tileEffect() {
+  $tiles.css("fontSize", sizeCounter);
+  
+  if(sizeCounter == 20){
+    clearInterval($textSizeInterval);
+    sizeCounter = 0;
+  }
+
+    sizeCounter++;
+}
+
 /*
  * IMPLEMENTING FUNCTIONS
  */
 
 $newGame.hide();
 $countdownTimer.hide();
+$('#gameContainer').hide();
 $('#enterButton').on('click', wordLogic);
 $newGame.on('click', newGameLogic);
 $startGame.on('click', startLogic);
-fillTileWithRandomLetter();
