@@ -6,10 +6,9 @@ body {
 img {
   width: 50px;
   height: 50px;
-  vertical-align: top;
-  display: inline-block;
   margin-left: 70px;
   margin-top: 30px;
+  position: absolute;
 }
 
 #navBar {
@@ -47,6 +46,10 @@ img {
 
 .greenTile {
   background-color: lime;
+}
+
+.goldTile {
+  background: gold;
 }
 
 #startButton {
@@ -169,7 +172,9 @@ img {
   display: inline-block;
   float: left;
   vertical-align: top;
-  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
 }
 
 #playerOneAddedWord {

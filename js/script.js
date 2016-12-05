@@ -1,16 +1,16 @@
-// array that contains references to each player's board
-var $player=[{player: "Player 1", score: "0", board: $('#playerOneBoard'), scoreBoard: $('#playerOneScoreBoard'), word:$('#playerOneAddedWord')}, 
-             {player: "Player 2", score: "0", board: $('#playerTwoBoard'), scoreBoard: $('#playerTwoScoreBoard'), word:$('#playerTwoAddedWord')}];
-
 // represents which player has turn
 var currentPlayerIndex = 0;
+
+// array that contains references to each player's board
+var $player=[{player: "Player 1", score: "0", board: $('#playerOneBoard'), scoreBoard: $('#playerOneScoreBoard'), word:$('#playerOneAddedWord'), wordList:[]}, 
+             {player: "Player 2", score: "0", board: $('#playerTwoBoard'), scoreBoard: $('#playerTwoScoreBoard'), word:$('#playerTwoAddedWord'), wordList: []}];
 
 // represents our 9 tiles
 var $tiles = $('.tiles');
 
 // array containing each letter of alphabet
 var letterArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-'s', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'a', 'e', 'e', 'i', 'o', 'u']
+'s', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'a', 'e', 'e', 'i', 'o', 'u'];
 
 // represents the area where clicked letters appear on board
 var $clickedWord = $('#clickedWord');
@@ -26,6 +26,9 @@ var $redInterval;
 
 // keeps track of green tiles and stops interval when complete
 var $greenInterval;
+
+// keeps track of gold tiles and stops interval when complete
+var $goldInterval;
 
 // keerps track of interval for size of tiles
 var $textSizeInterval;
@@ -72,19 +75,31 @@ function wordLogic() {
   }
 
   var $selectedTiles = $('.selectedTile');
-  if (words.indexOf($clickedWord.text()) >= 0){
+  if ($clickedWord.text().length>1 && $player[currentPlayerIndex].wordList.indexOf($clickedWord.text()) == -1 && words.indexOf($clickedWord.text()) >= 0){
     $player[currentPlayerIndex].score = parseInt($player[currentPlayerIndex].score) + $clickedWord.text().length;
     $player[currentPlayerIndex].scoreBoard.text("Score: " + parseInt($player[currentPlayerIndex].score));
+    $player[currentPlayerIndex].wordList.push($clickedWord.text());
     // represents clicked tiles
     $player[currentPlayerIndex].word.append('<p class="addWord">' + $clickedWord.text() + '</p>');
     $clickedWord.text("");
     $selectedTiles.addClass("greenTile");
     $greenInterval = setInterval(removeGreen, 100);
+  } else if ($player[currentPlayerIndex].wordList.indexOf($clickedWord.text()) != -1) {
+    $clickedWord.text("");
+    $selectedTiles.addClass("goldTile");
+    $goldInterval = setInterval(removeGold, 100);
   } else {
     $clickedWord.text("");
     $selectedTiles.addClass("redTile");
     $redInterval = setInterval(removeRed, 100);
   }
+}
+
+function removeGold() {
+  var $selectedTiles = $('.selectedTile');
+  $selectedTiles.removeClass("goldTile");
+  $selectedTiles.removeClass("selectedTile");
+  clearInterval($goldInterval);
 }
 
 function removeRed() {
