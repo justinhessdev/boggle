@@ -1,7 +1,7 @@
-<center>Word Game</center>
+#Word Game
 
 
-**User Stories**
+###User Stories
 
 
 Intro Screen - Create the intro screen with game directions. On click start the game and reveal the game screen
@@ -25,7 +25,7 @@ Game Over Logic - When both players have completed their turns the game is over.
 New Game Logic - The game is restarted. All elements are restored to default value.
 
 
-**WireFrames**
+###WireFrames
 
 ![alt text](./wireframes1.png "Wireframe 1")
 ![alt text](./wireframes2.png "Wireframe 1")
