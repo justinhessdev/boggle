@@ -23,3 +23,7 @@ Turn Logic - When countdown timer reaches 0, the turn is complete. Player two be
 Game Over Logic - When both players have completed their turns the game is over. Player with most points wins. Option to start a new game.
 
 New Game Logic - The game is restarted. All elements are restored to default value.
+
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![alt text](./wireframes1.png "Wireframe 1")
+![alt text](./wireframes2.png "Wireframe 1")
