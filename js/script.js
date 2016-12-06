@@ -50,6 +50,7 @@ var wordRight = new Audio('./sounds/word_right.wav');
 var wordWrong = new Audio('./sounds/word_wrong.wav');
 var wordUsedAlready = new Audio('./sounds/word_used_already.wav');
 var bgMusic = new Audio('./sounds/bg_music.wav');
+var tickTock = new Audio('./sounds/ticktock.wav');
 
 
 // fill each tile a random letter from the alphabet
@@ -156,8 +157,12 @@ function startInterval() {
 }
 
 function startTimer() {
+  tickTock.volume = 1;
+  tickTock.play();
   $countdownTimer.text($countdownTimer.text()-1);
   if($countdownTimer.text() === "0"){
+    tickTock.pause();
+    tickTock.currentTime=0;
     clearInterval($myInterval);
     currentPlayerIndex++;
     if(currentPlayerIndex>1){
@@ -286,6 +291,7 @@ function playMusic() {
  * IMPLEMENTING FUNCTIONS
  */
 
+bgMusic.volume = 0.1;
 bgMusic.play();
 setInterval(playMusic, 20000);
 $newGame.hide();
