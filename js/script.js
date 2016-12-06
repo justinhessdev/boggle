@@ -76,7 +76,7 @@ function wordLogic() {
 
   var $selectedTiles = $('.selectedTile');
   if ($clickedWord.text().length>1 && $player[currentPlayerIndex].wordList.indexOf($clickedWord.text()) == -1 && words.indexOf($clickedWord.text()) >= 0){
-    $player[currentPlayerIndex].score = parseInt($player[currentPlayerIndex].score) + $clickedWord.text().length;
+    $player[currentPlayerIndex].score = parseInt($player[currentPlayerIndex].score) + $clickedWord.text().length*10000;
     $player[currentPlayerIndex].scoreBoard.text("Score: " + parseInt($player[currentPlayerIndex].score));
     $player[currentPlayerIndex].wordList.push($clickedWord.text());
     // represents clicked tiles
@@ -150,7 +150,7 @@ function reset() {
   $countdownTimer.hide();
   $tiles.css("fontSize", 0);
   $('#gameContainer').hide();
-  $countdownTimer.text("10");
+  $countdownTimer.text("30");
   $('#playerOneAddedWord').hide();
   $hiddenImageArr[0].show();
   $tiles.off();
@@ -190,7 +190,7 @@ function gameOverLogic() {
 function newGameLogic() {
   $player[0].score = "0";
   $player[1].score = "0";
-  $countdownTimer.text("10");
+  $countdownTimer.text("30");
   currentPlayerIndex=0;
   $newGame.hide();
   $startGame.show();
