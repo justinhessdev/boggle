@@ -1,7 +1,7 @@
-Word Game
+<center>Word Game</center>
 
 
-User Stories
+**User Stories**
 
 
 Intro Screen - Create the intro screen with game directions. On click start the game and reveal the game screen
@@ -24,6 +24,8 @@ Game Over Logic - When both players have completed their turns the game is over.
 
 New Game Logic - The game is restarted. All elements are restored to default value.
 
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+
+**WireFrames**
+
 ![alt text](./wireframes1.png "Wireframe 1")
 ![alt text](./wireframes2.png "Wireframe 1")
