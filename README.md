@@ -27,5 +27,5 @@ New Game Logic - The game is restarted. All elements are restored to default val
 
 ###WireFrames
 
-![alt text](./wireframes1.png "Wireframe 1")
-![alt text](./wireframes2.png "Wireframe 1")
+![alt text](./images/wireframes1.png "Wireframe 1")
+![alt text](./images/wireframes2.png "Wireframe 1")

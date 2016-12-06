@@ -43,6 +43,15 @@ var $newGame = $('#newGameButton');
 
 var $startGame = $('#startButton');
 
+// sounds 
+var clickOn = new Audio('./sounds/click_on.wav');
+var clickOff = new Audio('./sounds/click_off.wav');
+var wordRight = new Audio('./sounds/word_right.wav');
+var wordWrong = new Audio('./sounds/word_wrong.wav');
+var wordUsedAlready = new Audio('./sounds/word_used_already.wav');
+var bgMusic = new Audio('./sounds/bg_music.wav');
+
+
 // fill each tile a random letter from the alphabet
 function fillTileWithRandomLetter() {
   if (currentPlayerIndex == 0) {
@@ -60,8 +69,14 @@ function tileLogic() {
     var currentWord = $clickedWord.text();
     var newWord = currentWord.replace($(this).text(), '');
     $clickedWord.text(newWord);
+    clickOff.pause();
+    clickOff.currentTime=0;
+    clickOff.play();
   } else {
     $clickedWord.text($clickedWord.text() + $(this).text());
+    clickOn.pause();
+    clickOn.currentTime=0;
+    clickOn.play();
   }
 
   $(this).toggleClass('selectedTile');
@@ -81,6 +96,9 @@ function wordLogic() {
     $player[currentPlayerIndex].wordList.push($clickedWord.text());
     // represents clicked tiles
     $player[currentPlayerIndex].word.append('<p class="addWord">' + $clickedWord.text() + '</p>');
+    wordRight.pause();
+    wordRight.currentTime=0;
+    wordRight.play();
     $clickedWord.text("");
     $selectedTiles.addClass("greenTile");
     $greenInterval = setInterval(removeGreen, 100);
@@ -88,10 +106,16 @@ function wordLogic() {
     $clickedWord.text("");
     $selectedTiles.addClass("goldTile");
     $goldInterval = setInterval(removeGold, 100);
+    wordUsedAlready.pause();
+    wordUsedAlready.currentTime=0;
+    wordUsedAlready.play();
   } else {
     $clickedWord.text("");
     $selectedTiles.addClass("redTile");
     $redInterval = setInterval(removeRed, 100);
+    wordWrong.pause();
+    wordWrong.currentTime=0;
+    wordWrong.play();
   }
 }
 
@@ -157,6 +181,7 @@ function reset() {
   $tiles.removeClass("selectedTile");
   $tiles.removeClass("redTile");
   $tiles.removeClass("greenTile");
+  $tiles.removeClass("goldTile");
   $clickedWord.text("");
   // $textSizeInterval = setInterval(tileEffect, 20);
 }
@@ -182,6 +207,7 @@ function gameOverLogic() {
   $tiles.removeClass("selectedTile");
   $tiles.removeClass("redTile");
   $tiles.removeClass("greenTile");
+  $tiles.removeClass("goldTile");
   $clickedWord.text("");
   $startGame.hide();
   $newGame.show();
@@ -250,10 +276,18 @@ function tileEffect() {
     sizeCounter++;
 }
 
+function playMusic() {
+  bgMusic.pause();
+  bgMusic.currentTime=0;
+  bgMusic.play();
+}
+
 /*
  * IMPLEMENTING FUNCTIONS
  */
 
+bgMusic.play();
+setInterval(playMusic, 20000);
 $newGame.hide();
 $countdownTimer.hide();
 $('#gameContainer').hide();
