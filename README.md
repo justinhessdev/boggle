@@ -1,6 +1,6 @@
 #Boggle
 
-<https://justinhessdev.github.io/project01/>
+<https://justinhessdev.github.io/boggle/>
 
 ###User Stories
 
