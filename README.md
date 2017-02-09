@@ -1,4 +1,4 @@
-#Word Game
+#Boggle
 
 <https://justinhessdev.github.io/project01/>
 
